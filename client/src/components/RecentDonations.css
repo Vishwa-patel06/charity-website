@@ -1,0 +1,36 @@
+.donation-ticker {
+  width: 100%;
+  overflow: hidden;
+  background: #f8eaea;
+  padding: 10px 0;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: scroll 20s linear infinite;
+}
+
+.ticker-item {
+  margin-right: 40px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Animation */
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.amount {
+  color: red;
+  font-weight: bold;
+}
+

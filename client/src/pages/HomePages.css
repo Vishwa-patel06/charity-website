@@ -1,0 +1,227 @@
+
+/* ================= HERO SECTION ================= */
+.hero-section {
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+url("https://images.unsplash.com/photo-1523240795612-9a054b0db644");
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  padding: 140px 20px;
+}
+
+.hero-content h1 {
+  font-size: 3.5rem;
+  margin-bottom: 25px;
+  font-weight: 700;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  max-width: 650px;
+  margin: 0 auto 35px;
+  line-height: 1.6;
+}
+
+.hero-button {
+      background: linear-gradient(135deg, #ff4b2b, #ff416c);
+  color: white;
+  padding: 15px 40px;
+  border-radius: 50px;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.hero-button:hover {
+ transform: translateY(-10px);
+ box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+  
+}
+
+
+/* ================= IMPACT SECTION ================= */
+.impact-section {
+  text-align: center;
+  padding: 90px 20px;
+  background: #f9f9f9;
+}
+
+.impact-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 60px;
+}
+
+.impact-cards {
+  display: flex;
+  justify-content: center;
+  gap: 35px;
+  flex-wrap: wrap;
+}
+
+.impact-card {
+  background: white;
+  padding: 40px 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  min-width: 230px;
+  transition: all 0.3s ease;
+}
+
+.impact-card:hover {
+  transform: translateY(-10px);
+}
+
+.impact-card h3 {
+  font-size: 2.7rem;
+  color: #ff6b6b;
+  margin-bottom: 10px;
+}
+
+.impact-card p {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+
+/* ================= MISSION SECTION ================= */
+.mission-section {
+  padding: 100px 20px;
+}
+
+.mission-section h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 60px;
+}
+
+.mission-content {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.mission-content img {
+  width: 50%;
+  border-radius: 15px;
+}
+
+.mission-content p {
+  line-height: 1.8;
+  margin-bottom: 18px;
+  color: #444;
+}
+
+
+/* ================= FEATURE SECTION ================= */
+.feature-section {
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+    url("https://casfin.co.uk/wp-content/uploads/casfin-donating-business.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 120px 40px;
+}
+
+/* layout */
+.feature-overlay {
+  display: flex;
+  justify-content: center;
+  gap: 45px;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+/* cards */
+.feature-box {
+  max-width: 300px;
+  padding: 45px 30px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* hover */
+.feature-box:hover {
+  transform: translateY(-15px) scale(1.04);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+}
+
+/* icon */
+.icon {
+  font-size: 50px;
+  margin-bottom: 20px;
+  color: #ff6b6b;
+}
+
+/* title */
+.feature-box h3 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+/* text */
+.feature-box p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #ddd;
+}
+
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+
+  .mission-content {
+    flex-direction: column;
+  }
+
+  .mission-content img {
+    width: 100%;
+  }
+
+  .feature-overlay {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-content h1 {
+    font-size: 2.3rem;
+  }
+
+  .impact-section h2,
+  .mission-section h2 {
+    font-size: 2rem;
+  }
+}
+.recent-section {
+  margin: 80px 0;   /* top + bottom spacing */
+}
+
+
+/* ===== Mission Animation ===== */
+
+/* left animation */
+.fade-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: all 0.8s ease;
+}
+
+/* right animation */
+.fade-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: all 0.8s ease;
+}
+
+/* when visible */
+.show {
+  opacity: 1;
+  transform: translateX(0);
+}

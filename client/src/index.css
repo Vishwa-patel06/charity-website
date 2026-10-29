@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700;800&display=swap');
+
+:root {
+  --primary-color: #71b1a1;
+  --secondary-color: #5a6f7c;
+  --light-bg-color: #f8f9fa;
+  --dark-text-color: #333333;
+
+  /* NEW */
+  --shadow: 0 8px 25px rgba(0,0,0,0.08);
+  --radius: 14px;
+
+  --body-font: 'Nunito Sans', sans-serif;
+}
+
+/* BODY */
+body {
+  font-family: var(--body-font);
+  color: var(--dark-text-color);
+  line-height: 1.7;
+  background: #f7f9fc; /* NEW */
+}
+
+/* HEADINGS */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 800;
+  color: var(--secondary-color);
+  letter-spacing: 0.3px; /* NEW */
+}
+
+/* BUTTON PRIMARY (UPGRADED) */
+.btn-primary {
+  background: linear-gradient(135deg, #5a6f7c, #71b1a1); /* NEW */
+  border: none;
+  border-radius: 30px;
+  padding: 10px 25px;
+  font-weight: 700;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px); /* NEW */
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2); /* NEW */
+}
+
+/* BUTTON OUTLINE */
+.btn-outline-primary {
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  border-radius: 30px;
+  padding: 10px 25px;
+  font-weight: 700;
+  transition: 0.3s;
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primary-color);
+  color: white;
+  transform: translateY(-2px); /* NEW */
+}
+
+/* CARD (IMPORTANT ADD) */
+.card {
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow) !important;
+  border: none !important;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.12) !important;
+}
+
+/* IMAGE FIX */
+.card img {
+  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
+}
+
+/* SECTION SPACING */
+section {
+  padding: 60px 0;
+}
+
+/* NAVBAR SMALL UPGRADE */
+.navbar {
+  background: white !important;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.nav-link {
+  font-weight: 600;
+}
+
+.nav-link:hover {
+  color: var(--primary-color) !important;
+}
+
+/* PROGRESS BAR */
+.progress-bar {
+  background: linear-gradient(90deg, #71b1a1, #5a6f7c);
+}

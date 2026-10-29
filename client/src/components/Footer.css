@@ -1,0 +1,33 @@
+.site-footer{
+  background: linear-gradient(135deg,#2c3e50,#34495e);
+  color:white;
+  padding:50px 0;
+}
+
+.footer-heading{
+  font-weight:600;
+  margin-bottom:15px;
+}
+
+.footer-link{
+  color:#ddd;
+  text-decoration:none;
+}
+
+.footer-link:hover{
+  color:#ffffff;
+}
+
+.social-icons a{
+  font-size:22px;
+  color:white;
+  margin-right:15px;
+}
+
+.social-icons a:hover{
+  color:#71b1a1;
+}
+
+hr{
+  border-color:#666;
+}

@@ -1,0 +1,280 @@
+
+require("dotenv").config();
+console.log("Starting server file...");
+
+const express = require("express");
+const cors = require("cors");
+const db = require("./db");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const { createUser, findUserByEmail } = require("./models/User");
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("Backend is running");
+});
+
+
+// ================= DONATION API =================
+app.post("/api/donate", (req, res) => {
+
+  const { user_id, name, email, amount, message, cause_id } = req.body;
+
+  if (!user_id || !name || !email || !amount || Number(amount) <= 0) {
+    return res.status(400).json({ error: "Invalid donation data" });
+  }
+
+  const sql = `
+  INSERT INTO donations (user_id, name, email, cause_id, amount, message)
+  VALUES (?, ?, ?, ?, ?, ?)
+  `;
+
+  db.query(
+    sql,
+    [user_id, name, email, cause_id || null, Number(amount), message || ""],
+    (err) => {
+
+      if (err) {
+        console.error("Donation DB error:", err);
+        return res.status(500).json({ error: "Database error" });
+      }
+
+      res.json({ success: true });
+
+    }
+  );
+
+});
+
+
+// ================= CONTACT API =================
+app.post("/api/contact", (req, res) => {
+
+  const { firstName, lastName, email, message } = req.body;
+
+  if (!firstName || !lastName || !email || !message) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
+
+  const sql = `
+    INSERT INTO contact_messages (first_name, last_name, email, message)
+    VALUES (?, ?, ?, ?)
+  `;
+
+  db.query(sql, [firstName, lastName, email, message], (err) => {
+
+    if (err) {
+      console.error("Contact DB error:", err);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    res.json({ success: true });
+
+  });
+
+});
+
+
+// ================= REGISTER =================
+app.post("/api/register", async (req, res) => {
+
+  const { name, email, password } = req.body;
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  createUser(name, email, hashedPassword, (err, result) => {
+
+    if (err) return res.status(500).json(err);
+
+    res.json("User Registered Successfully");
+
+  });
+
+});
+
+
+// ================= LOGIN =================
+app.post("/api/login", (req, res) => {
+
+  const { email, password } = req.body;
+
+  const sql = "SELECT * FROM users WHERE email = ?";
+
+  db.query(sql, [email], async (err, result) => {
+
+    if (err) {
+      console.log(err);
+      return res.status(500).json({ message: "Server error" });
+    }
+
+    if (result.length === 0) {
+      return res.status(400).json({ message: "User not found" });
+    }
+
+    const user = result[0];
+
+    const match = await bcrypt.compare(password, user.password);
+
+    if (!match) {
+      return res.status(400).json({ message: "Wrong password" });
+    }
+
+res.json({
+  message: "Login successful",
+  token: "login_token",
+  id: result[0].id,
+  role: result[0].role,
+  name: result[0].name,
+  email: result[0].email
+});
+  });
+
+});
+
+
+// ================= ADMIN ROUTES =================
+
+// Get users
+app.get("/api/admin/users", (req, res) => {
+
+  const sql = "SELECT id,name,email,role FROM users";
+
+  db.query(sql, (err, result) => {
+
+    if (err) {
+      console.log(err);
+      return res.status(500).json({ message: "Database error" });
+    }
+
+    res.json(result);
+
+  });
+
+});
+
+app.get("/api/admin/donations", (req, res) => {
+
+  const sql = "SELECT * FROM donations";
+
+  db.query(sql, (err, result) => {
+
+    if (err) {
+      console.log(err);
+      res.status(500).send(err);
+    } else {
+      res.json(result);
+    }
+
+  });
+
+});
+// ================= START SERVER =================
+const PORT = 4201;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
+
+app.get("/causes",(req,res)=>{
+
+ const sql = "SELECT * FROM causes";
+
+ db.query(sql,(err,result)=>{
+   if(err){
+     console.log(err);
+     res.send(err);
+   }else{
+     res.send(result);
+   }
+
+ });
+
+});
+
+app.post("/donate",(req,res)=>{
+
+ const {user_id,user_name,cause_id,amount} = req.body;
+
+ const sql = `
+ INSERT INTO donations (user_id,user_name,cause_id,amount,donation_date)
+ VALUES (?,?,?,?,NOW())
+ `;
+
+ db.query(sql,[user_id,user_name,cause_id,amount],(err,result)=>{
+
+   if(err){
+     console.log(err);
+     res.send(err);
+   }else{
+
+     const updateCause = `
+     UPDATE causes 
+     SET collected_amount = collected_amount + ?
+     WHERE id = ?
+     `;
+
+     db.query(updateCause,[amount,cause_id]);
+
+     res.send({message:"Donation successful"});
+   }
+
+ });
+
+});
+
+app.get("/user-donations/:id", (req,res)=>{
+ const userId = req.params.id;
+
+ const sql = `
+ SELECT donations.amount, causes.title, donations.donation_date
+ FROM donations
+ JOIN causes ON donations.cause_id = causes.id
+ WHERE donations.user_id = ?
+ `;
+
+ db.query(sql,[userId],(err,result)=>{
+  if(err) return res.send(err);
+  res.send(result);
+ });
+});
+
+app.get("/api/users", (req, res) => {
+
+  const sql = "SELECT id, name, email, role FROM users";
+
+  db.query(sql, (err, result) => {
+
+    if (err) {
+      console.log(err);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    res.json(result);
+
+  });
+
+});
+
+app.delete("/api/users/:id", (req, res) => {
+
+  const userId = req.params.id;
+
+  const sql = "DELETE FROM users WHERE id=?";
+
+  db.query(sql, [userId], (err) => {
+
+    if (err) {
+      console.log(err);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    res.json({ success: true });
+
+  });
+
+});

@@ -1,0 +1,219 @@
+/* GLOBAL */
+.about-page {
+  font-family: 'Poppins', sans-serif;
+  background: #f7f9fc;
+}
+
+/* HERO SECTION (YOUR IMAGE KEPT) */
+.about-page .hero-section {
+  height: 80vh;
+  background: url("https://images.openai.com/static-rsc-4/8UR6Lrshr7GAiZxTRNtTpPKAqw5jfmJzAiG3UXOcv7lrVQ9t_bGqDg9RYZTIN7qo83PPcsmZIaq6wiQmE1oLYyPh6md_1nGavbppZlBTP26dFxJvBtonD-5HehcgyBBNK7DTOGof2XHl8l-Ci-05-bKnp1MtyeP-7L31gtuwwrokhDYBWt2Ag7zqCR5ZnPPn?purpose=fullsize") center/cover no-repeat;
+  position: relative;
+}
+
+/* ADD OVERLAY (IMPORTANT FIX) */
+.about-page .overlay {
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.6),
+    rgba(61, 51, 51, 0.7)
+  );
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* GLASS EFFECT */
+.about-page .hero-box {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 40px;
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+}
+
+/* HERO TEXT */
+.about-page .hero-section h1 {
+  font-size: 52px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #fff;
+}
+
+.about-page .hero-section p {
+  font-size: 20px;
+  max-width: 700px;
+  margin: 10px auto 0;
+  color: #fff;
+  opacity: 0.95;
+}
+
+/* STORY */
+.about-page .about-content {
+  padding: 80px 0;
+}
+
+.about-page .about-content h2 {
+  font-size: 32px;
+  color: #2b5876;
+  margin-bottom: 20px;
+  font-weight: 700;
+  position: relative;
+}
+
+.about-page .about-content h2::after {
+  content: "";
+  width: 60px;
+  height: 3px;
+  background: #4e4376;
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+}
+
+.about-page .about-content p {
+  color: #555;
+  line-height: 1.9;
+  font-size: 17px;
+  margin-bottom: 15px;
+  max-width: 900px;
+}
+
+/* MISSION & VISION */
+.about-page .mission-vision {
+  padding-bottom: 80px;
+}
+
+.about-page .card-box {
+  background: #ffffff;
+  padding: 35px;
+  border-radius: 15px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  height: 100%;
+  border-top: 4px solid #4e4376;
+}
+
+.about-page .card-box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.12);
+}
+
+.about-page .card-box h3 {
+  margin-bottom: 15px;
+  color: #4e4376;
+  font-weight: 600;
+}
+
+.about-page .card-box p {
+  color: #666;
+  line-height: 1.7;
+}
+
+/* IMPACT */
+.about-page .impact-section {
+  background: linear-gradient(135deg, #eef2f7, #ffffff);
+  padding: 80px 0;
+}
+
+.about-page .impact-section h2 {
+  font-size: 32px;
+  color:  #ff6b6b;
+  font-weight: 700;
+}
+
+.about-page .impact-card {
+  background: white;
+  padding: 40px 20px;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}
+
+.about-page .impact-card:hover {
+  transform: scale(1.07);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+}
+
+.about-page .impact-card h1 {
+  font-size: 42px;
+  font-weight: bold;
+  color:  #ff6b6b;
+}
+
+.about-page .impact-card p {
+  margin-top: 10px;
+  color: #777;
+}
+
+/* SMOOTH UI */
+* {
+  transition: all 0.3s ease;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .about-page .hero-section h1 {
+    font-size: 32px;
+  }
+
+  .about-page .hero-section p {
+    font-size: 15px;
+  }
+
+  .about-page .hero-box {
+    padding: 20px;
+  }
+}
+
+.about-story {
+  padding: 80px 20px;
+}
+
+.story-container {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.story-text {
+  flex: 1;
+}
+
+.story-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.story-text p {
+  line-height: 1.7;
+  margin-bottom: 15px;
+  color: #555;
+}
+
+.story-image {
+  flex: 1;
+}
+
+.story-image img {
+  width: 100%;
+  border-radius: 15px;
+}
+@media (max-width: 768px) {
+  .story-container {
+    flex-direction: column;
+  }
+}
+
+/* ===== Animation Base ===== */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.fade-up.show {
+  opacity: 1;
+  transform: translateY(0);
+}

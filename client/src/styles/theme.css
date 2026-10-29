@@ -1,0 +1,17 @@
+:root {
+  --primary: #e1e9f1;
+  --secondary: #4e4376;
+  --accent: #ff6b6b;
+
+  --bg: #f7f9fc;
+  --text: #1f2d3d;
+  --muted: #6c757d;
+
+  --radius: 14px;
+  --shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg);
+}
